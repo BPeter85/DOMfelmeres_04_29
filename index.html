@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Felmérés</title>
+    <style>
+        @keyframes In2 {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes Up2 {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #catHidding {
+            width: 150px;
+            height: 150px;
+            opacity: 1;
+            animation-name: "Up2";
+            animation-duration: 5s;
+        }
+    </style>
+</head>
+
+<body>
+    1. Feladat: <br>
+    <input type="text" id="beviteliMezo">
+    <span id="karakterszam"> 0 </span> db karakterből áll.
+    <hr>
+    2. Feladat <br>
+    X koordináta:
+    <input type="number" name="xKoordinata" id="xKoordinata" value="100">
+    Y koordináta:
+    <input type="number" name="yKoordinata" id="yKoordinata" value="100">
+    <button id="kirajzol">Kirajzol</button>
+    <div id="negyzet"></div>
+    <hr>
+    3. Feladat <br>
+    <button id="eltuntetoMacska">Eltűntető</button>
+    <img src="hidingCat.jpg" alt="Hiding Cat" title="Hiding Cat" id="catHidding">
+    <hr>
+    4. Feladat <br>
+
+    <script>
+
+        beviteliMezo.addEventListener("change", karakterszamlalo);
+        function karakterszamlalo() {
+            let szoveg = document.querySelector("#beviteliMezo").value;
+            document.querySelector("#karakterszam").innerHTML = szoveg.length;
+        }
+
+        kirajzol.addEventListener("click", negyzetRajzolo);
+        function negyzetRajzolo() {
+            let negyzetrajz = document.querySelector("#negyzet");
+            negyzetrajz.style.width = document.querySelector("#xKoordinata").value + "px";
+            negyzetrajz.style.height = document.querySelector("#yKoordinata").value + "px";
+            negyzetrajz.style.border = "1px solid black";
+        }
+
+        eltuntetoMacska.addEventListener("click", macskaEltunteto);
+        function macskaEltunteto() {
+            let allapot = document.querySelector("#catHidding").style.animationName;
+            if (allapot != "In2") {
+                document.querySelector("#catHidding").style.animationName = "In2";
+            }
+            else {
+                document.querySelector("#catHidding").style.animationName = "Up2";
+            }
+        }
+    </script>
+</body>
+
+</html>
